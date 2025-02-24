@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+    <title>BondSchool</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="div1">
+      <img src="Prof.png" alt="Logo Site" class="img1" />
+      <span class="span1">BondSchool</span>
+      <span class="span2">Login / SignIn</span>
+      <input type="text" class="input1" placeholder="Search..." />
+      <input type="button" class="input4" src="Notif3.png" />
+      <div
+        class="input2"
+        onClick="document.getElementById('input-profile').click();"
+      >
+        <img alt="Profile" id="profile" />
+      </div>
+      <input
+        type="file"
+        id="input-profile"
+        class="input3"
+        accept="image/*"
+        onChange="loadFile(event)"
+      />
+    </div>
+    <script>
+      window.addEventListener("load", () => {
+        const profile = "Prof.png";
+        const profileCard = document.getElementById("profile");
+        var prf = localStorage.getItem("image");
+        profileCard.src = prf || profile;
+      });
+      function loadFile(event) {
+        const output = document.getElementById("profile");
+        const file = event.target.files[0];
+
+        if (file) {
+			const reader = new FileReader();
+          reader.onload = function (e) {
+            const base64String = e.target.result;
+            localStorage.setItem("image", base64String);
+            output.src = base64String;
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    </script>
+  </body>
+</html>
