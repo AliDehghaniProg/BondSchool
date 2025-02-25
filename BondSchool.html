@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width , initial-scale=1.0" />
-    <title>BondSchool</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
 
-  <body>
-    <div class="div1">
-      <img src="Prof.png" alt="Logo Site" class="img1" />
-      <span class="span1">BondSchool</span>
-      <span class="span2">Login / SignIn</span>
-      <input type="text" class="input1" placeholder="Search..." />
-      <input type="button" class="input4" src="Notif3.png" />
-      <div
-        class="input2"
-        onClick="document.getElementById('input-profile').click();"
-      >
-        <img alt="Profile" id="profile" />
-      </div>
-      <input
-        type="file"
-        id="input-profile"
-        class="input3"
-        accept="image/*"
-        onChange="loadFile(event)"
-      />
+<head>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+  <title>BondSchool</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <form id="form1" class="form1">
+    <img src="Prof.png" alt="Logo Site" class="img1" />
+    <div class="span1">BondSchool</div>
+    <div id="span2" class="span2">Login / SignIn</div>
+    <input type="text" class="input1" placeholder="Search..." />
+    <input type="button" class="input4" src="Notif3.png" />
+    <div class="input2" onClick="document.getElementById('input-profile').click();">
+      <img alt="Profile" id="profile" />
     </div>
+    <input type="file" id="input-profile" class="input3" accept="image/*" onChange="loadFile(event)" />
+  </form>
     <script>
       window.addEventListener("load", () => {
         const profile = "Prof.png";
@@ -39,7 +31,7 @@
         const file = event.target.files[0];
 
         if (file) {
-			const reader = new FileReader();
+          const reader = new FileReader();
           reader.onload = function (e) {
             const base64String = e.target.result;
             localStorage.setItem("image", base64String);
@@ -48,6 +40,17 @@
           reader.readAsDataURL(file);
         }
       }
+      function checkWidth() {
+      if (window.innerWidth < 710) {
+        document.getElementById("span2").style.display="none";
+      }
+      else {
+        document.getElementById("span2").style.display="block";
+      }
+    }
+    window.onresize = checkWidth;
+    window.onload = checkWidth;
     </script>
-  </body>
+</body>
+
 </html>
